@@ -52,10 +52,11 @@ export default function Home() {
                 Get started
               </Link>
               <Link
-                to="/about"
+                to="https://github.com/honeypatkar/FoodRecipe"
                 className="text-sm font-semibold leading-6 text-gray-900"
+                target="_blank"
               >
-                  About us <span aria-hidden="true">→</span>
+                  Github Repo <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>

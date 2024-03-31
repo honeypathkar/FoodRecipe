@@ -5,7 +5,7 @@ export default function RecipeCard(props) {
 
   return (
     <div>
-      <div className="card my-3">
+      {/* <div className="card my-3">
         <span
           className="position-absolute top-0 translate-middle badge rounded-pill bg-primary"
           style={{ left: "93%", zIndex: "1" }}
@@ -36,8 +36,40 @@ export default function RecipeCard(props) {
             View Full Recipe
           </a>
         </div>
+      </div> */}
+      <div class="card my-3">
+        <img src={imageUrl} class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{title}</h5>
+          {/* <p class="card-text">
+            Source {source}
+          </p> */}
+          <br/>
+          <footer class="blockquote-footer">
+            Recipe Provided By <cite title="Source Title">{source}</cite>
+          </footer>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li className="list-group-item text-xl">
+            {ingredients.length} Ingredients:
+          </li>
+          <ul>
+            {ingredients.map((ingredient, index) => (
+              <li key={index} className="pl-5 py-1">
+                {ingredient}
+              </li>
+            ))}
+          </ul>
+        </ul>
+        <div class="card-body">
+          <a href={recipeUrl} class="card-link btn btn-outline-dark">
+            View Full Recipe <span aria-hidden="true">→</span>
+          </a>
+          {/* <a href="#" class="card-link btn btn-outline-dark">
+            Another link <span aria-hidden="true">→</span>
+          </a> */}
+        </div>
       </div>
-
     </div>
   );
 }
