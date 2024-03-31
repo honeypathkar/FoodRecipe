@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <div className="bg-white relative   flex items-center  n justify-center overflow-hidden z-50 my-28">
+    <div className="bg-[#deffdd] relative   flex items-center  n justify-center overflow-hidden z-50 my-28">
       <div className="relative mx-auto h-full px-4  pb-20   md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
         <div className="flex flex-col items-center justify-between lg:flex-row py-16">
           <div className=" relative ">
@@ -11,7 +11,7 @@ export default function About() {
               <p className="flex text-sm uppercase text-g1  ">About Us</p>
               <h2 className="mb-6 max-w-lg text-5xl font-light leading-snug tracking-tight text-g1 sm:text-7xl sm:leading-snug">
                 We make you cook
-                <span className="my-1 inline-block border-b-8 border-g4 bg-white px-4 font-bold text-g4 animate__animated animate__flash">
+                <span className="my-1 inline-block border-b-8 border-g4 bg-[#deffdd] px-4 font-bold text-g4 animate__animated animate__flash">
                   Better
                 </span>
               </h2>

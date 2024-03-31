@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default function RecipeCard(props) {
   const { title, imageUrl, ingredients, recipeUrl, source } = props;
 
@@ -37,10 +38,10 @@ export default function RecipeCard(props) {
           </a>
         </div>
       </div> */}
-      <div class="card my-3">
+      <div class="card my-3 bg-[#e0f0df]" >
         <img src={imageUrl} class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{title}</h5>
+          <h5 class="card-title text-xl"><b>{title}</b></h5>
           {/* <p class="card-text">
             Source {source}
           </p> */}
@@ -50,8 +51,8 @@ export default function RecipeCard(props) {
           </footer>
         </div>
         <ul class="list-group list-group-flush">
-          <li className="list-group-item text-xl">
-            {ingredients.length} Ingredients:
+          <li className="list-group-item text-xl bg-[#e0f0df]">
+            <b>{ingredients.length} Ingredients <span aria-hidden="true">→</span> </b>
           </li>
           <ul>
             {ingredients.map((ingredient, index) => (
