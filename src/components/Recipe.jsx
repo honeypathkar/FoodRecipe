@@ -6,6 +6,7 @@ export default function Recipe() {
   const [recipe, setRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const [error, setError] = useState(false);
   const app_id = "22aae2a3";
   const api_key = import.meta.env.VITE_REACT_APP_RECIPE_API;
 
@@ -14,9 +15,15 @@ export default function Recipe() {
     setLoading(true);
     const response = await fetch(url);
     const result = await response.json();
-    const recipes = result.hits.map((hit) => hit.recipe);
-    setRecipe(recipes);
-    setLoading(false);
+    if (result.hits.length === 0) {
+      // Check if hits array is empty
+      setError(true);
+    } else {
+      const recipes = result.hits.map((hit) => hit.recipe);
+      setRecipe(recipes);
+      setLoading(false);
+      setError(false);
+    }
   };
 
   useEffect(() => {
@@ -31,6 +38,7 @@ export default function Recipe() {
     const recipes = result.hits.map((hit) => hit.recipe);
     setRecipe(recipes);
     setLoading(false);
+    setError(recipes.length === 0); // Update error based on whether recipes array is empty
   };
 
   const handleSearch = (e) => {
@@ -54,6 +62,18 @@ export default function Recipe() {
       </form>
 
       {loading && <Spinner />}
+      {error && (
+        <div
+          className="error text-danger"
+          style={{
+            fontSize: "xxx-large",
+            textAlign: "center",
+            marginTop: "150px",
+          }}
+        >
+          Recipe for search result "{search}" not Found. Try again!
+        </div>
+      )}
       <div className="row my-20">
         {!loading &&
           recipe.map((element, index) => (
