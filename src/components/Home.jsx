@@ -27,13 +27,15 @@ export default function Home() {
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               <TypeIt
+              options={{loop: true}}
                 getBeforeInit={(instance) => {
                   instance
-                    .type("Recipe Finder Find recipe of any Food &#127857; !")
+                    .type("Recipe Finder Find recipe of any Food ! &#127857;")
                     .pause(750)
                     .delete(8)
-                    .pause(500)
-                    .type("Dishes ! &#128523;");
+                    .pause(750)
+                    .type("Dishes ! &#128523;")
+                   
                   // Remember to return it!
                   return instance;
                 }}
