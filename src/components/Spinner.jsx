@@ -5,7 +5,7 @@ export default function Spinner() {
   return (
     <div className="spinner-container">
       <img src={spinner} alt="spinner" className="spinner-img" />
-      <style jsx>{`
+      <style jsx="true">{`
         .spinner-container {
           display: flex;
           justify-content: center;

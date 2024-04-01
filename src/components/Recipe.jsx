@@ -7,7 +7,7 @@ export default function Recipe() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const app_id = "22aae2a3";
-  const api_key = "d4a632ae2cfe5b0484380cace90ccb1d";
+  const api_key = import.meta.env.VITE_REACT_APP_RECIPE_API;
 
   const fetchRecipe = async () => {
     const url = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=indian%20food&app_id=${app_id}&app_key=${api_key}`;
@@ -20,7 +20,7 @@ export default function Recipe() {
   };
 
   useEffect(() => {
-      fetchRecipe();
+    fetchRecipe();
   }, []); // Empty dependency array means this effect runs only once after the initial render
 
   const fetchRecipeBySearch = async () => {
@@ -40,15 +40,15 @@ export default function Recipe() {
 
   return (
     <div className="container my-28">
-      <form class="d-flex" role="search" onSubmit={handleSearch}>
+      <form className="d-flex" role="search" onSubmit={handleSearch}>
         <input
-          class="form-control me-2"
+          className="form-control me-2"
           type="search"
           placeholder="Enter Food Name for recipe..."
           aria-label="Search"
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button class="btn btn-outline-dark" type="submit">
+        <button className="btn btn-outline-dark" type="submit">
           Search
         </button>
       </form>
