@@ -1,6 +1,8 @@
 import React from "react";
 
-const Favorites = ({ favorites }) => {
+const Favorites = (props) => {
+  const {favorites} = props;
+
   return (
     <div className="container my-28">
       <h1 className="text-6xl text-center">Favorites</h1>
@@ -44,14 +46,6 @@ const Favorites = ({ favorites }) => {
                   >
                     View Full Recipe <span aria-hidden="true">→</span>
                   </a>
-                  {/* <button
-                    className="btn btn-outline-dark"
-                    onClick={handleFavoriteClick}
-                  >
-                    {isFav(recipeUrl)
-                      ? "Remove from Favorites"
-                      : "Add to Favorites"}
-                  </button> */}
                 </div>
               </div>
             </div>

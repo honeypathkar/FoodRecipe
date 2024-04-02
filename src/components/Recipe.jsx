@@ -3,7 +3,11 @@ import RecipeCard from "./RecipeCard";
 import Spinner from "./Spinner";
 
 export default function Recipe(props) {
-  const { favorites, setFavorites } = props;
+  const {
+    addToFavorites,
+    removeFromFavorites,
+    isFavorite,
+  } = props;
   const [recipe, setRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -30,21 +34,6 @@ export default function Recipe(props) {
   useEffect(() => {
     fetchRecipe();
   }, []);
-
-  const addToFavorites = (recipe) => {
-    setFavorites((prevFavorites) => [...prevFavorites, recipe]); // Ensure favorites is an array
-  };
-
-  const removeFromFavorites = (recipeUrl) => {
-    const updatedFavorites = (favorites || []).filter(
-      (fav) => fav.recipeUrl !== recipeUrl
-    ); // Ensure favorites is defined
-    setFavorites(updatedFavorites);
-  };
-
-  const isFavorite = (recipeUrl) => {
-    return (favorites || []).some((fav) => fav.recipeUrl === recipeUrl); // Ensure favorites is defined
-  };
 
   const fetchRecipeBySearch = async () => {
     const url = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${search}&app_id=${app_id}&app_key=${api_key}`;
@@ -79,7 +68,14 @@ export default function Recipe(props) {
 
       {loading && <Spinner />}
       {error && (
-        <div className="error text-danger" style={{ fontSize: "xxx-large", textAlign: "center", marginTop: "150px" }}>
+        <div
+          className="error text-danger"
+          style={{
+            fontSize: "xxx-large",
+            textAlign: "center",
+            marginTop: "150px",
+          }}
+        >
           Recipe for search result "{search}" not Found. Try again!
         </div>
       )}
@@ -91,14 +87,14 @@ export default function Recipe(props) {
           recipe.map((element, index) => (
             <div key={index} className="col-md-3">
               <RecipeCard
-                  title={element.label}
-                  imageUrl={element.image}
-                  ingredients={element.ingredientLines}
-                  recipeUrl={element.url}
-                  source={element.source}
-                  isFav={isFavorite}
-                  addToFavorite={addToFavorites} // Correct prop name
-                  removeFromFavorite={removeFromFavorites}
+                title={element.label}
+                imageUrl={element.image}
+                ingredients={element.ingredientLines}
+                recipeUrl={element.url}
+                source={element.source}
+                isFav={isFavorite}
+                addToFavorite={addToFavorites} // Correct prop name
+                removeFromFavorite={removeFromFavorites}
               />
             </div>
           ))}
