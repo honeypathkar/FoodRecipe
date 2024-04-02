@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 import Spinner from "./Spinner";
 
-export default function Recipe() {
+export default function Recipe(props) {
+  const { favorites, setFavorites } = props;
   const [recipe, setRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [error, setError] = useState(false);
+
   const app_id = "22aae2a3";
   const api_key = import.meta.env.VITE_REACT_APP_RECIPE_API;
 
@@ -16,7 +18,6 @@ export default function Recipe() {
     const response = await fetch(url);
     const result = await response.json();
     if (result.hits.length === 0) {
-      // Check if hits array is empty
       setError(true);
     } else {
       const recipes = result.hits.map((hit) => hit.recipe);
@@ -28,7 +29,22 @@ export default function Recipe() {
 
   useEffect(() => {
     fetchRecipe();
-  }, []); // Empty dependency array means this effect runs only once after the initial render
+  }, []);
+
+  const addToFavorites = (recipe) => {
+    setFavorites((prevFavorites) => [...prevFavorites, recipe]); // Ensure favorites is an array
+  };
+
+  const removeFromFavorites = (recipeUrl) => {
+    const updatedFavorites = (favorites || []).filter(
+      (fav) => fav.recipeUrl !== recipeUrl
+    ); // Ensure favorites is defined
+    setFavorites(updatedFavorites);
+  };
+
+  const isFavorite = (recipeUrl) => {
+    return (favorites || []).some((fav) => fav.recipeUrl === recipeUrl); // Ensure favorites is defined
+  };
 
   const fetchRecipeBySearch = async () => {
     const url = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${search}&app_id=${app_id}&app_key=${api_key}`;
@@ -38,7 +54,7 @@ export default function Recipe() {
     const recipes = result.hits.map((hit) => hit.recipe);
     setRecipe(recipes);
     setLoading(false);
-    setError(recipes.length === 0); // Update error based on whether recipes array is empty
+    setError(recipes.length === 0);
   };
 
   const handleSearch = (e) => {
@@ -63,27 +79,26 @@ export default function Recipe() {
 
       {loading && <Spinner />}
       {error && (
-        <div
-          className="error text-danger"
-          style={{
-            fontSize: "xxx-large",
-            textAlign: "center",
-            marginTop: "150px",
-          }}
-        >
+        <div className="error text-danger" style={{ fontSize: "xxx-large", textAlign: "center", marginTop: "150px" }}>
           Recipe for search result "{search}" not Found. Try again!
         </div>
       )}
+
+      {/* Render Favorites component with favorites state */}
+
       <div className="row my-20">
         {!loading &&
           recipe.map((element, index) => (
             <div key={index} className="col-md-3">
               <RecipeCard
-                title={element.label}
-                imageUrl={element.image}
-                ingredients={element.ingredientLines} // Pass the ingredient details
-                recipeUrl={element.url}
-                source={element.source}
+                  title={element.label}
+                  imageUrl={element.image}
+                  ingredients={element.ingredientLines}
+                  recipeUrl={element.url}
+                  source={element.source}
+                  isFav={isFavorite}
+                  addToFavorite={addToFavorites} // Correct prop name
+                  removeFromFavorite={removeFromFavorites}
               />
             </div>
           ))}
