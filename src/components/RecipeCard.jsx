@@ -7,23 +7,18 @@ export default function RecipeCard(props) {
     ingredients,
     recipeUrl,
     source,
-    isFav,
     addToFavorite,
-    removeFromFavorite,
+    isFav,
   } = props;
 
   const handleFavoriteClick = () => {
-    if (isFav(recipeUrl)) {
-      removeFromFavorite(recipeUrl);
-    } else {
-      addToFavorite({
-        title,
-        imageUrl,
-        ingredients,
-        recipeUrl,
-        source,
-      });
-    }
+    addToFavorite({
+      title,
+      imageUrl,
+      ingredients,
+      recipeUrl,
+      source,
+    });
   };
 
   return (
@@ -34,9 +29,6 @@ export default function RecipeCard(props) {
           <h5 className="card-title text-xl">
             <b>{title}</b>
           </h5>
-          {/* <p className="card-text">
-                        Source {source}
-                    </p> */}
           <br />
           <footer className="blockquote-footer">
             Recipe Provided By <cite title="Source Title">{source}</cite>
@@ -57,14 +49,15 @@ export default function RecipeCard(props) {
           </ul>
         </ul>
         <div className="card-body">
-          <a href={recipeUrl} className="card-link btn btn-outline-dark">
+          <a href={recipeUrl} className="card-link btn btn-outline-dark mr-1">
             View Full Recipe <span aria-hidden="true">→</span>
           </a>
           <button
             className="btn btn-outline-dark"
             onClick={handleFavoriteClick}
+            disabled={isFav(recipeUrl)}
           >
-            {isFav(recipeUrl) ? "Remove from Favorites" : "Add to Favorites"}
+            {isFav(recipeUrl) ? "Added to Favorites" : "Add to Favorites"}
           </button>
         </div>
       </div>

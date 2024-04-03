@@ -82,7 +82,7 @@ export default function Recipe(props) {
 
       {/* Render Favorites component with favorites state */}
 
-      <div className="row my-20">
+      <div className="row my-4">
         {!loading &&
           recipe.map((element, index) => (
             <div key={index} className="col-md-3">
