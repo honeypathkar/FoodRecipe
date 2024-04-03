@@ -16,9 +16,9 @@ export default function Example() {
 
   return (
     <div className="bg-white">
-      <header className="absolute inset-x-0 top-0 z-50 bg-[#efefefe7]">
+      <header className="absolute inset-x-0 top-0 z-50 bg-[#735DA5]">
         <nav
-          className="flex items-center justify-between p-6 lg:px-8 fixed-top bg-[#efefefe7]"
+          className="flex items-center justify-between p-6 lg:px-8 fixed-top bg-[#735DA5]"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
@@ -42,7 +42,7 @@ export default function Example() {
               <Link
                 key={item.name}
                 to={item.to}
-                className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-400"
+                className="text-sm font-semibold leading-6 text-[#f0eef2] hover:text-[#D3C5E5]"
               >
                 {item.name}
               </Link>
@@ -56,7 +56,7 @@ export default function Example() {
           onClose={setMobileMenuOpen}
         >
           <div className="fixed inset-0 z-50" />
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#735DA5] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <Link to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
@@ -78,7 +78,7 @@ export default function Example() {
                     <Link
                       key={item.name}
                       to={item.to}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-blue-400"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-[#735DA5]"
                     >
                       {item.name}
                     </Link>

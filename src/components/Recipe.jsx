@@ -60,8 +60,9 @@ export default function Recipe(props) {
           placeholder="Enter Food Name for recipe..."
           aria-label="Search"
           onChange={(e) => setSearch(e.target.value)}
+          style={{backgroundColor: "#d3c2ea"}}
         />
-        <button className="btn btn-outline-dark" type="submit">
+        <button className="btn bg-[#D3C5E5] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white" type="submit">
           Search
         </button>
       </form>

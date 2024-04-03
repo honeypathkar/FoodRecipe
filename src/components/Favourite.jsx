@@ -9,7 +9,10 @@ const Favorites = (props) => {
       {favorites.length === 0 ? (
         <div className="text-center my-60">
           <p className="text-4xl">No favorite items yet</p>
-          <Link to="/recipe" className="text-2xl btn btn-outline-dark mt-5">
+          <Link
+            to="/recipe"
+            className="text-2xl btn bg-[#D3C5E5] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white mt-5"
+          >
             Add Items <span aria-hidden="true">→</span>
           </Link>
         </div>
@@ -17,7 +20,7 @@ const Favorites = (props) => {
         <div className="row my-20">
           {favorites.map((recipe, index) => (
             <div key={index} className="col-md-3">
-              <div className="card my-3 bg-[#e0f0df]">
+              <div className="card my-3 bg-[#bda6da]">
                 <img
                   src={recipe.imageUrl}
                   className="card-img-top"
@@ -34,7 +37,7 @@ const Favorites = (props) => {
                   </footer>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item text-xl bg-[#e0f0df]">
+                  <li className="list-group-item text-xl bg-[#bda6da]">
                     <b>
                       {recipe.ingredients.length} Ingredients{" "}
                       <span aria-hidden="true">→</span>{" "}
@@ -51,12 +54,12 @@ const Favorites = (props) => {
                 <div className="card-body">
                   <a
                     href={recipe.recipeUrl}
-                    className="card-link btn btn-outline-dark mb-2"
+                    className="card-link btn btn bg-[#baa7d2] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white mb-2"
                   >
                     View Full Recipe <span aria-hidden="true">→</span>
                   </a>
                   <button
-                    className="btn btn-outline-dark"
+                    className="btn btn bg-[#baa7d2] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white"
                     onClick={() => removeFromFavorites(recipe.recipeUrl)}
                   >
                     Remove from Favorites

@@ -23,7 +23,7 @@ export default function RecipeCard(props) {
 
   return (
     <div>
-      <div className="card my-3 bg-[#e0f0df]">
+      <div className="card my-3 bg-[#bda6da]">
         <img src={imageUrl} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title text-xl">
@@ -35,7 +35,7 @@ export default function RecipeCard(props) {
           </footer>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item text-xl bg-[#e0f0df]">
+          <li className="list-group-item text-xl bg-[#bda6da]">
             <b>
               {ingredients.length} Ingredients <span aria-hidden="true">→</span>{" "}
             </b>
@@ -49,11 +49,11 @@ export default function RecipeCard(props) {
           </ul>
         </ul>
         <div className="card-body">
-          <a href={recipeUrl} className="card-link btn btn-outline-dark mr-1">
+          <a href={recipeUrl} className="card-link btn bg-[#baa7d2] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white mr-1">
             View Full Recipe <span aria-hidden="true">→</span>
           </a>
           <button
-            className="btn btn-outline-dark"
+            className="btn bg-[#baa7d2] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white"
             onClick={handleFavoriteClick}
             disabled={isFav(recipeUrl)}
           >
