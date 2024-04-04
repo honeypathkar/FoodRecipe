@@ -7,13 +7,14 @@ import Navbar from "./components/Navbar.jsx";
 import About from "./components/About.jsx";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Favorites from "./components/Favourite.jsx";
+import Alert from "./components/Alert.jsx";
 
 function App() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     showData();
-  }, []); 
+  }, []);
 
   const addToFavorites = (recipe) => {
     // setFavorites((prevFavorites) => [...prevFavorites, recipe]);
@@ -49,6 +50,7 @@ function App() {
     <>
       <Router>
         <Navbar />
+        <Alert />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/home" element={<Home />} />

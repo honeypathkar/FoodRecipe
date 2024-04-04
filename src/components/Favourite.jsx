@@ -1,11 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify"; // Import toast function
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Favorites = (props) => {
-  const { favorites, removeFromFavorites } = props;
+  const { favorites, removeFromFavorites, showAlert} = props;
+
+  const handleRemove = (recipeUrl) => {
+    removeFromFavorites(recipeUrl);
+    toast.success("Removed from Favorites");
+  };
 
   return (
-    <div className="container my-40">
+    <div className="container my-28">
       {favorites.length === 0 ? (
         <div className="text-center my-60">
           <p className="text-4xl">No favorite items yet</p>
@@ -17,7 +25,7 @@ const Favorites = (props) => {
           </Link>
         </div>
       ) : (
-        <div className="row my-20">
+        <div className="row">
           {favorites.map((recipe, index) => (
             <div key={index} className="col-md-3">
               <div className="card my-3 bg-[#bda6da]">
@@ -60,7 +68,7 @@ const Favorites = (props) => {
                   </a>
                   <button
                     className="btn btn bg-[#baa7d2] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white"
-                    onClick={() => removeFromFavorites(recipe.recipeUrl)}
+                    onClick={() => handleRemove(recipe.recipeUrl)}
                   >
                     Remove from Favorites
                   </button>

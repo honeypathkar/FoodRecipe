@@ -1,4 +1,6 @@
 import React from "react";
+import { toast } from "react-toastify"; // Import toast function
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RecipeCard(props) {
   const {
@@ -19,6 +21,8 @@ export default function RecipeCard(props) {
       recipeUrl,
       source,
     });
+    // showAlert("Added to Favorites"); // You can also use showAlert if needed
+    toast.success("Added to Favorites");
   };
 
   return (
