@@ -7,6 +7,7 @@ export default function Recipe(props) {
     addToFavorites,
     removeFromFavorites,
     isFavorite,
+    mode
   } = props;
   const [recipe, setRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -55,14 +56,16 @@ export default function Recipe(props) {
     <div className="container my-28">
       <form className="d-flex" role="search" onSubmit={handleSearch}>
         <input
-          className="form-control me-2"
+          className={`form-control me-2 ${
+            mode === "dark" ? "placeholder-light" : "placeholder-dark"
+          }`}
           type="search"
           placeholder="Enter Food Name for recipe..."
           aria-label="Search"
           onChange={(e) => setSearch(e.target.value)}
-          style={{backgroundColor: "#d3c2ea"}}
+          style={{backgroundColor: mode==="light"?"#d3c2ea":"#13162d"}}
         />
-        <button className="btn bg-[#D3C5E5] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white" type="submit">
+        <button className={`btn btn-outline-${mode==="light"?"dark":"light"}`} type="submit">
           Search
         </button>
       </form>
@@ -96,10 +99,20 @@ export default function Recipe(props) {
                 isFav={isFavorite}
                 addToFavorite={addToFavorites} // Correct prop name
                 removeFromFavorite={removeFromFavorites}
+                mode={mode}
               />
             </div>
           ))}
       </div>
+      <style jsx = "true">{`
+      .placeholder-light::placeholder {
+        color: #ccc; /* Light color for placeholder text */
+      }
+      
+      .placeholder-dark::placeholder {
+        color: #666; /* Dark color for placeholder text */
+      }
+      `}</style>
     </div>
   );
 }

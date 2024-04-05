@@ -1,7 +1,8 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Alert() {
+export default function Alert(props) {
+  const {mode} = props;
   return (
     <div>
       <ToastContainer
@@ -14,7 +15,7 @@ export default function Alert() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={`${mode==="light"?"light":"dark"}`}
         transition:Bounce
       />
     </div>

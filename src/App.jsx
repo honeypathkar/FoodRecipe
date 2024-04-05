@@ -11,6 +11,18 @@ import Alert from "./components/Alert.jsx";
 
 function App() {
   const [favorites, setFavorites] = useState([]);
+  const [mode, setmode] = useState("light");
+
+  const toggleMode = () => {
+    if(mode === "light"){
+      setmode("dark");
+      document.body.style.backgroundColor = "#161925";
+    }
+    else {
+      setmode("light");
+      document.body.style.backgroundColor = "#D3C5E5";
+    }
+  }
 
   useEffect(() => {
     showData();
@@ -49,11 +61,11 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
-        <Alert />
+        <Navbar mode={mode} />
+        <Alert mode={mode}/>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/home" element={<Home mode={mode} toggleMode={toggleMode}/>} />
           <Route
             exact
             path="/recipe"
@@ -63,10 +75,11 @@ function App() {
                 addToFavorites={addToFavorites}
                 removeFromFavorites={removeFromFavorites}
                 isFavorite={isFavorite}
+                mode={mode}
               />
             }
           />
-          <Route exact path="/about" element={<About />} />
+          <Route exact path="/about" element={<About mode={mode} />} />
           <Route
             exact
             path="/favourite"
@@ -76,6 +89,7 @@ function App() {
                 addToFavorites={addToFavorites}
                 removeFromFavorites={removeFromFavorites}
                 isFavorite={isFavorite}
+                mode={mode}
               />
             }
           />

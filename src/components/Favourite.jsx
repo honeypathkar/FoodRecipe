@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify"; // Import toast function
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Favorites = (props) => {
-  const { favorites, removeFromFavorites, showAlert} = props;
+  const { favorites, removeFromFavorites, mode } = props;
 
   const handleRemove = (recipeUrl) => {
     removeFromFavorites(recipeUrl);
@@ -15,11 +14,11 @@ const Favorites = (props) => {
   return (
     <div className="container my-28">
       {favorites.length === 0 ? (
-        <div className="text-center my-60">
+        <div className="text-center my-60" style={{color: mode === "light" ? "dark" : "white",}}>
           <p className="text-4xl">No favorite items yet</p>
           <Link
             to="/recipe"
-            className="text-2xl btn bg-[#D3C5E5] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white mt-5"
+            className={`text-2xl btn btn-outline-${mode==="light"?"dark":"light"} mt-5`}
           >
             Add Items <span aria-hidden="true">→</span>
           </Link>
@@ -28,7 +27,13 @@ const Favorites = (props) => {
         <div className="row">
           {favorites.map((recipe, index) => (
             <div key={index} className="col-md-3">
-              <div className="card my-3 bg-[#bda6da]">
+              <div
+                className="card my-3"
+                style={{
+                  backgroundColor: mode === "light" ? "#bda6da" : "#13162d",
+                  color: mode === "light" ? "dark" : "white",
+                }}
+              >
                 <img
                   src={recipe.imageUrl}
                   className="card-img-top"
@@ -45,7 +50,13 @@ const Favorites = (props) => {
                   </footer>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item text-xl bg-[#bda6da]">
+                  <li
+                    className="list-group-item text-xl"
+                    style={{
+                      backgroundColor: mode === "light" ? "#bda6da" : "#13162d",
+                      color: mode === "light" ? "dark" : "white",
+                    }}
+                  >
                     <b>
                       {recipe.ingredients.length} Ingredients{" "}
                       <span aria-hidden="true">→</span>{" "}
@@ -62,12 +73,12 @@ const Favorites = (props) => {
                 <div className="card-body">
                   <a
                     href={recipe.recipeUrl}
-                    className="card-link btn btn bg-[#baa7d2] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white mb-2"
+                    className={`card-link btn btn-outline-${mode==="light"?"dark":"light"} mb-2`}
                   >
                     View Full Recipe <span aria-hidden="true">→</span>
                   </a>
                   <button
-                    className="btn btn bg-[#baa7d2] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white"
+                    className={`btn btn-outline-${mode==="light"?"dark":"light"}`}
                     onClick={() => handleRemove(recipe.recipeUrl)}
                   >
                     Remove from Favorites

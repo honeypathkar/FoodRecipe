@@ -2,28 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TypeIt from "typeit-react";
 
-export default function Home() {
+export default function Home(props) {
+  const { mode, toggleMode } = props;
   return (
     <div>
       <div className="relative isolate px-6 pt-14 lg:px-8 mb-0">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+            <div className={`relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-${mode==="ligth"?"dark":"light"} hover:ring-gray-900/20`}>
               Presenting first recipe searching app{" "}
             </div>
           </div>
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h1
+              className={`text-4xl font-bold tracking-tight text-${mode === "light"?"dark":"light"} sm:text-6xl`}
+            >
               <TypeIt
-              options={{loop: true}}
+                options={{ loop: true }}
                 getBeforeInit={(instance) => {
                   instance
                     .type("Recipe Finder Find recipe of any Food ! &#127857;")
                     .pause(750)
                     .delete(8)
                     .pause(750)
-                    .type("Dishes ! &#128523;")
-                   
+                    .type("Dishes ! &#128523;");
+
                   // Remember to return it!
                   return instance;
                 }}
@@ -36,17 +39,23 @@ export default function Home() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                to ="/recipe"
-                className="rounded-md btn bg-[#D3C5E5] border border-black hover:border-white hover:bg-[#735DA5] hover:text-white "
+                to="/recipe"
+                className={`rounded-md btn btn-outline-${mode==="light"?"dark":"light"}`}
               >
                 Find Recipe
               </Link>
+              <button
+                onClick={toggleMode}
+                className={`rounded-md btn btn-outline-${mode==="light"?"dark":"light"}`}
+              >
+                {mode==="light"?"Dark Mode":"Light Mode"}
+              </button>
               <Link
                 to="https://github.com/honeypatkar/FoodRecipe"
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className={`rounded-md btn btn-outline-${mode==="light"?"dark":"light"}`}
                 target="_blank"
               >
-                  Github Repo <span aria-hidden="true">→</span>
+                Github Repo <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
