@@ -3,12 +3,7 @@ import RecipeCard from "./RecipeCard";
 import Spinner from "./Spinner";
 
 export default function Recipe(props) {
-  const {
-    addToFavorites,
-    removeFromFavorites,
-    isFavorite,
-    mode
-  } = props;
+  const { addToFavorites, removeFromFavorites, isFavorite, mode } = props;
   const [recipe, setRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -63,9 +58,15 @@ export default function Recipe(props) {
           placeholder="Enter Food Name for recipe..."
           aria-label="Search"
           onChange={(e) => setSearch(e.target.value)}
-          style={{backgroundColor: mode==="light"?"#d3c2ea":"#13162d"}}
+          style={{
+            backgroundColor: mode === "light" ? "#d3c2ea" : "#13162d",
+            color: mode === "dark" ? "white" : "black",
+          }}
         />
-        <button className={`btn btn-outline-${mode==="light"?"dark":"light"}`} type="submit">
+        <button
+          className={`btn btn-outline-${mode === "light" ? "dark" : "light"}`}
+          type="submit"
+        >
           Search
         </button>
       </form>
@@ -73,7 +74,7 @@ export default function Recipe(props) {
       {loading && <Spinner />}
       {error && (
         <div
-          className="error text-danger"
+          className={`error text-${mode==="light"?"dark":"light"}`}
           style={{
             fontSize: "xxx-large",
             textAlign: "center",
@@ -104,14 +105,14 @@ export default function Recipe(props) {
             </div>
           ))}
       </div>
-      <style jsx = "true">{`
-      .placeholder-light::placeholder {
-        color: #ccc; /* Light color for placeholder text */
-      }
-      
-      .placeholder-dark::placeholder {
-        color: #666; /* Dark color for placeholder text */
-      }
+      <style jsx="true">{`
+        .placeholder-light::placeholder {
+          color: #ccc; /* Light color for placeholder text */
+        }
+
+        .placeholder-dark::placeholder {
+          color: #666; /* Dark color for placeholder text */
+        }
       `}</style>
     </div>
   );
