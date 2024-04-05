@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import TypeIt from "typeit-react";
 
 export default function Home(props) {
-  const { mode, toggleMode } = props;
+  const { mode} = props;
   return (
     <div>
       <div className="relative isolate px-6 pt-14 lg:px-8 mb-0">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className={`relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-${mode==="ligth"?"dark":"light"} hover:ring-gray-900/20`}>
+            <div className={`relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 hover:ring-gray-900/20`}>
               Presenting first recipe searching app{" "}
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function Home(props) {
                 Find Recipe
               </Link>
               <button
-                onClick={toggleMode}
+                onClick={props.toggleMode}
                 className={`rounded-md btn btn-outline-${mode==="light"?"dark":"light"}`}
               >
                 {mode==="light"?"Dark Mode":"Light Mode"}
@@ -58,6 +58,7 @@ export default function Home(props) {
                 Github Repo <span aria-hidden="true">→</span>
               </Link>
             </div>
+            
           </div>
         </div>
       </div>

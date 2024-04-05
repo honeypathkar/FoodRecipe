@@ -24,6 +24,7 @@ function App() {
     }
   }
 
+
   useEffect(() => {
     showData();
   }, []);
@@ -62,10 +63,14 @@ function App() {
     <>
       <Router>
         <Navbar mode={mode} />
-        <Alert mode={mode}/>
+        <Alert mode={mode} />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/home" element={<Home mode={mode} toggleMode={toggleMode}/>} />
+          <Route exact path="/" element={<Home mode={mode} toggleMode={toggleMode} />} />
+          <Route
+            exact
+            path="/home"
+            element={<Home mode={mode} toggleMode={toggleMode} />}
+          />
           <Route
             exact
             path="/recipe"
