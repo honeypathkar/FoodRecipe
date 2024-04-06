@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import food from "./Images/food.png";
+import food from "./Images/food.png"
 import { Link } from "react-router-dom";
 
 const navigation = [

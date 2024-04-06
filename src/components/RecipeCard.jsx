@@ -14,6 +14,8 @@ export default function RecipeCard(props) {
     mode,
   } = props;
 
+
+  //Add to Fav. function for adding item itno fav. list
   const handleFavoriteClick = () => {
     addToFavorite({
       title,
@@ -22,7 +24,7 @@ export default function RecipeCard(props) {
       recipeUrl,
       source,
     });
-    // showAlert("Added to Favorites"); // You can also use showAlert if needed
+    //Using react toast for ashowing alert if item add to fav.
     toast.success("Added to Favorites");
   };
 

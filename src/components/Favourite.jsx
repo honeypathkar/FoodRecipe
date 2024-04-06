@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify"; // Import toast function
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+//Fav. component here the fav. item show 
 
 const Favorites = (props) => {
   const { favorites, removeFromFavorites, mode } = props;
 
+  //Item remove Function
   const handleRemove = (recipeUrl) => {
     removeFromFavorites(recipeUrl);
+    //using toast for alert if item removed from fav.
     toast.success("Removed from Favorites");
   };
 

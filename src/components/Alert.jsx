@@ -1,6 +1,8 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+//using react Toastify package for showing alert
+
 export default function Alert(props) {
   const {mode} = props;
   return (

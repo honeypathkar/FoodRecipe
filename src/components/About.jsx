@@ -5,6 +5,7 @@ import Chef2 from "./Images/chef2.png"
 
 export default function About(props) {
   const { mode } = props;
+  //About app function telling about us
   return (
     <div
       className="relative   flex items-center  n justify-center overflow-hidden z-50 my-28"

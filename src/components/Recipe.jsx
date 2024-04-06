@@ -9,9 +9,11 @@ export default function Recipe(props) {
   const [search, setSearch] = useState("");
   const [error, setError] = useState(false);
 
-  const app_id = "22aae2a3";
+  //Hiding api key and app id
+  const app_id = import.meta.env.VITE_REACT_APP_REACIPE_APP_ID;
   const api_key = import.meta.env.VITE_REACT_APP_RECIPE_API;
 
+  //Intializing fetchREcipe function it runs by default on first opening of app
   const fetchRecipe = async () => {
     const url = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=indian%20food&app_id=${app_id}&app_key=${api_key}`;
     setLoading(true);
@@ -31,6 +33,8 @@ export default function Recipe(props) {
     fetchRecipe();
   }, []);
 
+
+  //Intializing fetchRecipeBySearch function it runs when user click on search button
   const fetchRecipeBySearch = async () => {
     const url = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${search}&app_id=${app_id}&app_key=${api_key}`;
     setLoading(true);
@@ -74,7 +78,7 @@ export default function Recipe(props) {
       {loading && <Spinner />}
       {error && (
         <div
-          className={`error text-${mode==="light"?"dark":"light"}`}
+          className={`error text-${mode === "light" ? "dark" : "light"}`}
           style={{
             fontSize: "xxx-large",
             textAlign: "center",
@@ -85,12 +89,12 @@ export default function Recipe(props) {
         </div>
       )}
 
-      {/* Render Favorites component with favorites state */}
 
       <div className="row my-4">
         {!loading &&
           recipe.map((element, index) => (
             <div key={index} className="col-md-3">
+              {/* Sending data into recipeCard */}
               <RecipeCard
                 title={element.label}
                 imageUrl={element.image}

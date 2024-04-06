@@ -10,32 +10,33 @@ import Favorites from "./components/Favourite.jsx";
 import Alert from "./components/Alert.jsx";
 
 function App() {
+  //Initializing Fav. state for  adding recipe into fav.
   const [favorites, setFavorites] = useState([]);
+  //Initializing mode state for changing mode
   const [mode, setmode] = useState("light");
 
+  //Toggle Mode Function
   const toggleMode = () => {
-    if(mode === "light"){
+    if (mode === "light") {
       setmode("dark");
       document.body.style.backgroundColor = "#161925";
-    }
-    else {
+    } else {
       setmode("light");
       document.body.style.backgroundColor = "#D3C5E5";
     }
-  }
-
+  };
 
   useEffect(() => {
     showData();
   }, []);
 
+  //Add To fav. Function for adding racipe into fav. section
   const addToFavorites = (recipe) => {
-    // setFavorites((prevFavorites) => [...prevFavorites, recipe]);
     const newFavorites = [...favorites, recipe];
     setFavorites(newFavorites);
     saveData([...newFavorites]);
   };
-
+  //Remove from fav. Function for removing racipe into fav. section
   const removeFromFavorites = (recipeUrl) => {
     const updatedFavorites = favorites.filter(
       (fav) => fav.recipeUrl !== recipeUrl
@@ -44,14 +45,18 @@ function App() {
     saveData([...updatedFavorites]);
   };
 
+  //Funciton for check if recipe is in the fav. or not
+
   const isFavorite = (recipeUrl) => {
     return favorites.some((fav) => fav.recipeUrl === recipeUrl);
   };
 
+  //Save data function for storing fav. item after the reload
   const saveData = (favorites) => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
+  //Getting  data function for getting fav. item after the reload
   const showData = () => {
     const storedData = localStorage.getItem("favorites");
     if (storedData) {
@@ -65,7 +70,11 @@ function App() {
         <Navbar mode={mode} />
         <Alert mode={mode} />
         <Routes>
-          <Route exact path="/" element={<Home mode={mode} toggleMode={toggleMode} />} />
+          <Route
+            exact
+            path="/"
+            element={<Home mode={mode} toggleMode={toggleMode} />}
+          />
           <Route
             exact
             path="/home"

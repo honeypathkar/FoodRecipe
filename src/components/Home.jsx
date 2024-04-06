@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//Using TypeIt for typing effect
 import TypeIt from "typeit-react";
 
 export default function Home(props) {
@@ -55,6 +56,7 @@ export default function Home(props) {
               >
                 Find Recipe
               </Link>
+              {/* Function for changing mode */}
               <button
                 onClick={props.toggleMode}
                 className={`rounded-md btn btn-outline-${
