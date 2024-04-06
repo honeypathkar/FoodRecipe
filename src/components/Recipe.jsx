@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 import Spinner from "./Spinner";
+import { toast } from "react-toastify";
 
 export default function Recipe(props) {
   const { addToFavorites, removeFromFavorites, isFavorite, mode } = props;
@@ -36,6 +37,9 @@ export default function Recipe(props) {
 
   //Intializing fetchRecipeBySearch function it runs when user click on search button
   const fetchRecipeBySearch = async () => {
+    if(search === ""){
+      toast.info("Please enter the recipe name");
+    }
     const url = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${search}&app_id=${app_id}&app_key=${api_key}`;
     setLoading(true);
     const response = await fetch(url);
@@ -85,7 +89,7 @@ export default function Recipe(props) {
             marginTop: "150px",
           }}
         >
-          Recipe for search result "{search}" not Found. Try again!
+          Recipe not Found. Try again!
         </div>
       )}
 
