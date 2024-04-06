@@ -1,10 +1,11 @@
 import React from "react";
 import spinner from "./Images/loading.gif";
+import spinner2 from "./Images/loading2.gif"
 
-export default function Spinner() {
+export default function Spinner({mode}) {
   return (
     <div className="spinner-container">
-      <img src={spinner} alt="spinner" className="spinner-img" />
+      <img src={mode==="light"?spinner:spinner2} alt="spinner" className="spinner-img" />
       <style jsx="true">{`
         .spinner-container {
           display: flex;

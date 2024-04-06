@@ -79,7 +79,7 @@ export default function Recipe(props) {
         </button>
       </form>
 
-      {loading && <Spinner />}
+      {loading && <Spinner mode={mode} />}
       {error && (
         <div
           className={`error text-${mode === "light" ? "dark" : "light"}`}
