@@ -3,12 +3,16 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import food from "./Images/food.png"
 import { Link } from "react-router-dom";
+import Home from "./Images/home.png";
+import Recipe from "./Images/recipe.png";
+import Fav from "./Images/fav.png";
+import About from "./Images/about.png";
 
 const navigation = [
-  { name: "Home", to: "/home" },
-  { name: "Recipes", to: "/recipe" },
-  { name: "Favourite", to: "/favourite" },
-  { name: "About us", to: "/about" },
+  { src: Home, name: "Home", to: "/home" },
+  { src: Recipe, name: "Recipes", to: "/recipe" },
+  { src: Fav, name: "Favorite", to: "/favourite" },
+  { src: About, name: "About us", to: "/about" },
 ];
 
 export default function Navbar(props) {
@@ -31,7 +35,7 @@ export default function Navbar(props) {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-${mode==="light"?"black":"white"}`}
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
@@ -41,11 +45,10 @@ export default function Navbar(props) {
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.src}
                 to={item.to}
                 className="text-sm font-semibold leading-6 text-[#f0eef2] hover:text-[#D3C5E5]"
-              >
-                {item.name}
+              > <img src={item.src} className="h-7 w-auto"/>
               </Link>
             ))}
           </div>
@@ -65,7 +68,7 @@ export default function Navbar(props) {
               </Link>
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                className={`-m-2.5 rounded-md p-2.5 text-${mode==="light"?"black":"white"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
@@ -77,13 +80,14 @@ export default function Navbar(props) {
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
                     <Link
-                      key={item.name}
+                    key={item.src}
                       to={item.to}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:text-[#735DA5]"
+                      className="-mx-3 flex rounded-lg px-3 py-2 gap-4 text-base font-semibold leading-7 text-white hover:text-[#735DA5]"
                     >
-                      {item.name}
+                      <img src={item.src} className="h-7 w-auto"/>
+                        {item.name}
                     </Link>
-                  ))}
+                      ))}
                 </div>
               </div>
             </div>
