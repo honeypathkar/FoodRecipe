@@ -15,16 +15,32 @@ function App() {
   //Initializing mode state for changing mode
   const [mode, setmode] = useState("light");
 
-  //Toggle Mode Function
+
+  // Toggle Mode Function
   const toggleMode = () => {
+    let newMode;
     if (mode === "light") {
-      setmode("dark");
+      newMode = "dark";
       document.body.style.backgroundColor = "#161925";
     } else {
-      setmode("light");
+      newMode = "light";
       document.body.style.backgroundColor = "#D3C5E5";
     }
+    setmode(newMode);
+    localStorage.setItem("mode", newMode); // Save mode to local storage
   };
+
+  useEffect(() => {
+    const storedMode = localStorage.getItem("mode");
+    if (storedMode) {
+      setmode(storedMode);
+      if (storedMode === "dark") {
+        document.body.style.backgroundColor = "#161925";
+      } else {
+        document.body.style.backgroundColor = "#D3C5E5";
+      }
+    }
+  }, []);
 
   useEffect(() => {
     showData();
