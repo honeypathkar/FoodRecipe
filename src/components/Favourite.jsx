@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 //Fav. component here the fav. item show 
 
@@ -24,7 +26,7 @@ const Favorites = (props) => {
             to="/recipe"
             className={`text-2xl btn btn-outline-${mode==="light"?"dark":"light"} mt-5`}
           >
-            Add Items <span aria-hidden="true">→</span>
+            Add Items <AddIcon/>
           </Link>
         </div>
       ) : (
@@ -85,7 +87,7 @@ const Favorites = (props) => {
                     className={`btn btn-outline-${mode==="light"?"dark":"light"}`}
                     onClick={() => handleRemove(recipe.recipeUrl)}
                   >
-                    Remove from Favorites
+                    Remove from Favorites <DeleteIcon/>
                   </button>
                 </div>
               </div>

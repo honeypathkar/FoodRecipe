@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 //Using TypeIt for typing effect
 import TypeIt from "typeit-react";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { Tooltip } from "@material-tailwind/react";
 
 export default function Home(props) {
   const { mode } = props;
@@ -56,15 +59,6 @@ export default function Home(props) {
               >
                 Find Recipe
               </Link>
-              {/* Function for changing mode */}
-              <button
-                onClick={props.toggleMode}
-                className={`rounded-md btn btn-outline-${
-                  mode === "light" ? "dark" : "light"
-                }`}
-              >
-                {mode === "light" ? "Dark Mode" : "Light Mode"}
-              </button>
               <Link
                 to="https://github.com/honeypatkar/FoodRecipe"
                 className={`rounded-md btn btn-outline-${

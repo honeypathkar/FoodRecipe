@@ -1,6 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify"; // Import toast function
 import "react-toastify/dist/ReactToastify.css";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function RecipeCard(props) {
   const {
@@ -34,7 +35,7 @@ export default function RecipeCard(props) {
         className="card my-3"
         style={{
           backgroundColor: mode === "light" ? "#bda6da" : "#13162d",
-          color: mode === "light" ? "dark" : "white",
+          color: mode === "light" ? "black" : "white",
         }}
       >
         <img src={imageUrl} className="card-img-top" alt="..." />
@@ -52,7 +53,7 @@ export default function RecipeCard(props) {
             className="list-group-item text-xl"
             style={{
               backgroundColor: mode === "light" ? "#bda6da" : "#13162d",
-              color: mode === "light" ? "dark" : "white",
+              color: mode === "light" ? "black" : "white",
             }}
           >
             <b>
@@ -70,7 +71,7 @@ export default function RecipeCard(props) {
         <div className="card-body">
           <a
             href={recipeUrl}
-            className={`card-link btn btn-outline-${mode==="light"?"dark":"light"} mr-1`}
+            className={`card-link btn btn-outline-${mode==="light"?"dark":"light"} mr-1 mb-2`}
           >
             View Full Recipe <span aria-hidden="true">→</span>
           </a>
@@ -79,7 +80,7 @@ export default function RecipeCard(props) {
             onClick={handleFavoriteClick}
             disabled={isFav(recipeUrl)}
           >
-            {isFav(recipeUrl) ? "Added to Favorites" : "Add to Favorites"}
+            {isFav(recipeUrl) ? "Added to Favorites" : "Add to Favorites"} <FavoriteIcon/>
           </button>
         </div>
       </div>

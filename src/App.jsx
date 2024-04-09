@@ -67,19 +67,11 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar mode={mode} />
+        <Navbar mode={mode} toggleMode={toggleMode} />
         <Alert mode={mode} />
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={<Home mode={mode} toggleMode={toggleMode} />}
-          />
-          <Route
-            exact
-            path="/home"
-            element={<Home mode={mode} toggleMode={toggleMode} />}
-          />
+          <Route exact path="/" element={<Home mode={mode} />} />
+          <Route exact path="/home" element={<Home mode={mode} />} />
           <Route
             exact
             path="/recipe"
@@ -93,20 +85,18 @@ function App() {
               />
             }
           />
-          <Route exact path="/about" element={<About mode={mode} />} />
           <Route
             exact
             path="/favourite"
             element={
               <Favorites
                 favorites={favorites}
-                addToFavorites={addToFavorites}
                 removeFromFavorites={removeFromFavorites}
-                isFavorite={isFavorite}
                 mode={mode}
               />
             }
           />
+          <Route exact path="/about" element={<About mode={mode} />} />
         </Routes>
       </Router>
     </>
