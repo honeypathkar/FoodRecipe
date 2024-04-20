@@ -8,7 +8,7 @@ export default function About(props) {
   //About app function telling about us
   return (
     <div
-      className="relative   flex items-center  n justify-center overflow-hidden z-50 my-28"
+      className="relative  flex items-center  n justify-center overflow-hidden z-50 my-12"
       style={{
         backgroundColor: mode === "light" ? "#D3C5E5" : "#161925",
         color: mode === "light" ? "dark" : "white",

@@ -2,16 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 //Using TypeIt for typing effect
 import TypeIt from "typeit-react";
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { Tooltip } from "@material-tailwind/react";
 
 export default function Home(props) {
   const { mode } = props;
   return (
     <div>
-      <div className="relative isolate px-6 pt-14 lg:px-8 mb-0">
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+      <div className="relative isolate px-6  lg:px-8 mb-0">
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div
               className={`relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 hover:ring-gray-900/20`}

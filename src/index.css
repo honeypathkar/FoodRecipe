@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
+.navItem{
+    @apply flex items-center justify-center w-full cursor-pointer hover:scale-125 focus:text-white;
+}
 @tailwind utilities;

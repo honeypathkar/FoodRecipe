@@ -8,6 +8,7 @@ import About from "./components/About.jsx";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Favorites from "./components/Favourite.jsx";
 import Alert from "./components/Alert.jsx";
+import BottomBar from "./components/BottomBar.jsx";
 
 function App() {
   //Initializing Fav. state for  adding recipe into fav.
@@ -114,6 +115,7 @@ function App() {
           />
           <Route exact path="/about" element={<About mode={mode} />} />
         </Routes>
+        <BottomBar mode={mode}/>
       </Router>
     </>
   );

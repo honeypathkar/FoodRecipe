@@ -56,7 +56,7 @@ export default function Recipe(props) {
   };
 
   return (
-    <div className="container my-28">
+    <div className="container my-12">
       <form className="d-flex" role="search" onSubmit={handleSearch}>
         <input
           className={`form-control me-2 ${

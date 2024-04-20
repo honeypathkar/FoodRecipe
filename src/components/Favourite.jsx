@@ -18,7 +18,7 @@ const Favorites = (props) => {
   };
 
   return (
-    <div className="container my-28">
+    <div className="container my-12">
       {favorites.length === 0 ? (
         <div className="text-center my-60" style={{color: mode === "light" ? "dark" : "white",}}>
           <p className="text-4xl">No favorite items yet</p>
