@@ -2,36 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromFav } from "../store/slices/favSlice";
 
-//Fav. component here the fav. item show 
+//Fav. component here the fav. item show
 
 const Favorites = (props) => {
-  const { favorites, removeFromFavorites, mode } = props;
+  const dispatch = useDispatch();
+  const fav = useSelector((state) => state.fav.fav);
+  const { mode } = props;
 
   //Item remove Function
   const handleRemove = (recipeUrl) => {
-    removeFromFavorites(recipeUrl);
+    dispatch(removeFromFav(recipeUrl));
     //using toast for alert if item removed from fav.
     toast.success("Removed from Favorites");
   };
 
   return (
     <div className="container my-12">
-      {favorites.length === 0 ? (
-        <div className="text-center my-60" style={{color: mode === "light" ? "dark" : "white",}}>
+      {fav.length === 0 ? (
+        <div
+          className="text-center my-60"
+          style={{ color: mode === "light" ? "dark" : "white" }}
+        >
           <p className="text-4xl">No favorite items yet</p>
           <Link
             to="/recipe"
-            className={`text-2xl btn btn-outline-${mode==="light"?"dark":"light"} mt-5`}
+            className={`text-2xl btn btn-outline-${
+              mode === "light" ? "dark" : "light"
+            } mt-5`}
           >
-            Add Items <AddIcon/>
+            Add Items <AddIcon />
           </Link>
         </div>
       ) : (
         <div className="row">
-          {favorites.map((recipe, index) => (
+          {fav.map((recipe, index) => (
             <div key={index} className="col-md-3">
               <div
                 className="card my-3"
@@ -79,15 +88,19 @@ const Favorites = (props) => {
                 <div className="card-body">
                   <a
                     href={recipe.recipeUrl}
-                    className={`card-link btn btn-outline-${mode==="light"?"dark":"light"} mb-2`}
+                    className={`card-link btn btn-outline-${
+                      mode === "light" ? "dark" : "light"
+                    } mb-2`}
                   >
                     View Full Recipe <span aria-hidden="true">→</span>
                   </a>
                   <button
-                    className={`btn btn-outline-${mode==="light"?"dark":"light"}`}
+                    className={`btn btn-outline-${
+                      mode === "light" ? "dark" : "light"
+                    }`}
                     onClick={() => handleRemove(recipe.recipeUrl)}
                   >
-                    Remove from Favorites <DeleteIcon/>
+                    Remove from Favorites <DeleteIcon />
                   </button>
                 </div>
               </div>

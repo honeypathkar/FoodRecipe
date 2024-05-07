@@ -1,30 +1,39 @@
 import React from "react";
 import { toast } from "react-toastify"; // Import toast function
 import "react-toastify/dist/ReactToastify.css";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFav } from "../store/slices/favSlice";
 
 export default function RecipeCard(props) {
+  const dispatch = useDispatch();
+  const fav = useSelector((state) => state.fav.fav);
   const {
     title,
     imageUrl,
     ingredients,
     recipeUrl,
     source,
-    addToFavorite,
-    isFav,
+    // addToFavorite,
+    // isFavorite,
     mode,
   } = props;
 
+  const isFavorite = (recipeUrl) => {
+    return fav.some((fav) => fav.recipeUrl === recipeUrl);
+  };
 
   //Add to Fav. function for adding item itno fav. list
   const handleFavoriteClick = () => {
-    addToFavorite({
-      title,
-      imageUrl,
-      ingredients,
-      recipeUrl,
-      source,
-    });
+    dispatch(
+      addToFav({
+        title,
+        imageUrl,
+        ingredients,
+        recipeUrl,
+        source,
+      })
+    );
     //Using react toast for ashowing alert if item add to fav.
     toast.success("Added to Favorites");
   };
@@ -71,16 +80,19 @@ export default function RecipeCard(props) {
         <div className="card-body">
           <a
             href={recipeUrl}
-            className={`card-link btn btn-outline-${mode==="light"?"dark":"light"} mr-1 mb-2`}
+            className={`card-link btn btn-outline-${
+              mode === "light" ? "dark" : "light"
+            } mr-14 mb-2`}
           >
             View Full Recipe <span aria-hidden="true">→</span>
           </a>
           <button
-            className={`btn btn-outline-${mode==="light"?"dark":"light"}`}
+            className={`btn btn-outline-${mode === "light" ? "dark" : "light"}`}
             onClick={handleFavoriteClick}
-            disabled={isFav(recipeUrl)}
+            disabled={isFavorite(recipeUrl)}
           >
-            {isFav(recipeUrl) ? "Added to Favorites" : "Add to Favorites"} <FavoriteIcon/>
+            {isFavorite(recipeUrl) ? "Added to Favorites" : "Add to Favorites"}{" "}
+            <FavoriteIcon />
           </button>
         </div>
       </div>

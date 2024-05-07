@@ -4,7 +4,7 @@ import Spinner from "./Spinner";
 import { toast } from "react-toastify";
 
 export default function Recipe(props) {
-  const { addToFavorites, removeFromFavorites, isFavorite, mode } = props;
+  const {  mode } = props;
   const [recipe, setRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -105,9 +105,9 @@ export default function Recipe(props) {
                 ingredients={element.ingredientLines}
                 recipeUrl={element.url}
                 source={element.source}
-                isFav={isFavorite}
-                addToFavorite={addToFavorites} // Correct prop name
-                removeFromFavorite={removeFromFavorites}
+                // isFav={isFavorite}
+                // addToFavorite={addToFavorites} // Correct prop name
+                // removeFromFavorite={removeFromFavorites}
                 mode={mode}
               />
             </div>

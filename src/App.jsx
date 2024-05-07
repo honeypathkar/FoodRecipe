@@ -11,11 +11,8 @@ import Alert from "./components/Alert.jsx";
 import BottomBar from "./components/BottomBar.jsx";
 
 function App() {
-  //Initializing Fav. state for  adding recipe into fav.
-  const [favorites, setFavorites] = useState([]);
   //Initializing mode state for changing mode
   const [mode, setmode] = useState("light");
-
 
   // Toggle Mode Function
   const toggleMode = () => {
@@ -43,44 +40,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    showData();
-  }, []);
-
-  //Add To fav. Function for adding racipe into fav. section
-  const addToFavorites = (recipe) => {
-    const newFavorites = [...favorites, recipe];
-    setFavorites(newFavorites);
-    saveData([...newFavorites]);
-  };
-  //Remove from fav. Function for removing racipe into fav. section
-  const removeFromFavorites = (recipeUrl) => {
-    const updatedFavorites = favorites.filter(
-      (fav) => fav.recipeUrl !== recipeUrl
-    );
-    setFavorites(updatedFavorites);
-    saveData([...updatedFavorites]);
-  };
-
-  //Funciton for check if recipe is in the fav. or not
-
-  const isFavorite = (recipeUrl) => {
-    return favorites.some((fav) => fav.recipeUrl === recipeUrl);
-  };
-
-  //Save data function for storing fav. item after the reload
-  const saveData = (favorites) => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  };
-
-  //Getting  data function for getting fav. item after the reload
-  const showData = () => {
-    const storedData = localStorage.getItem("favorites");
-    if (storedData) {
-      setFavorites(JSON.parse(storedData));
-    }
-  };
-
   return (
     <>
       <Router>
@@ -89,33 +48,11 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home mode={mode} />} />
           <Route exact path="/home" element={<Home mode={mode} />} />
-          <Route
-            exact
-            path="/recipe"
-            element={
-              <Recipe
-                favorites={favorites}
-                addToFavorites={addToFavorites}
-                removeFromFavorites={removeFromFavorites}
-                isFavorite={isFavorite}
-                mode={mode}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/favourite"
-            element={
-              <Favorites
-                favorites={favorites}
-                removeFromFavorites={removeFromFavorites}
-                mode={mode}
-              />
-            }
-          />
+          <Route exact path="/recipe" element={<Recipe mode={mode} />} />
+          <Route exact path="/favourite" element={<Favorites mode={mode} />} />
           <Route exact path="/about" element={<About mode={mode} />} />
         </Routes>
-        <BottomBar mode={mode}/>
+        <BottomBar mode={mode} />
       </Router>
     </>
   );
