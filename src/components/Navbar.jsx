@@ -1,10 +1,18 @@
-import * as React from "react";
+import React from "react";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { Link } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 import Food from "./Images/food.png";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar({ mode, toggleMode }) {
+  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+
+  React.useEffect(() => {
+    console.log("User:", user);
+    console.log("Is Authenticated:", isAuthenticated);
+  }, [user, isAuthenticated]);
+
   return (
     <header
       className="flex justify-between p-4 border-b border-[#f3f4f64d] left-0 w-full cursor-pointer"
@@ -13,14 +21,36 @@ export default function Navbar({ mode, toggleMode }) {
         color: mode === "light" ? "black" : "white",
       }}
     >
-      <Tooltip title=" Recipe Finder">
+      <Tooltip title="Recipe Finder">
         <Link to="/">
           <img src={Food} alt="Food" className="h-8 w-auto" />
         </Link>
       </Tooltip>
-      <Tooltip title={`${mode === "light" ? "Dark" : "Light"}`}>
-        <Brightness4Icon className="navItem" onClick={toggleMode} />
-      </Tooltip>
+      <div className="flex items-center">
+        {isAuthenticated && user && <img className="mr-5 w-10 rounded-full" src={user.picture} />}
+        {isAuthenticated ? (
+          <button
+            className={`btn-outline-${
+              mode === "light" ? "dark" : "light"
+            } btn mr-5`}
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
+            Log out
+          </button>
+        ) : (
+          <button
+            className={`btn-outline-${
+              mode === "light" ? "dark" : "light"
+            } btn mr-5`}
+            onClick={() => loginWithRedirect()}
+          >
+            Log in
+          </button>
+        )}
+        <Tooltip title={`${mode === "light" ? "Dark" : "Light"} Mode`}>
+          <Brightness4Icon className="navItem" onClick={toggleMode} />
+        </Tooltip>
+      </div>
     </header>
   );
 }

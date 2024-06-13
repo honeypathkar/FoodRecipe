@@ -6,20 +6,36 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromFav } from "../store/slices/favSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 
-//Fav. component here the fav. item show
+// Fav. component here the fav. item show
 
 const Favorites = (props) => {
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const fav = useSelector((state) => state.fav.fav);
   const { mode } = props;
 
-  //Item remove Function
+  // Item remove Function
   const handleRemove = (recipeUrl) => {
     dispatch(removeFromFav(recipeUrl));
-    //using toast for alert if item removed from fav.
+    // using toast for alert if item removed from fav.
     toast.success("Removed from Favorites");
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="container my-60 text-center" style={{ color: mode === "light" ? "dark" : "white" }}>
+        <p className="text-4xl">You need to log in to view your favorite items</p>
+        <button
+          className={`text-2xl btn btn-outline-${mode === "light" ? "dark" : "light"} mt-5`}
+          onClick={loginWithRedirect}
+        >
+          Log In
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="container my-12">

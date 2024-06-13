@@ -4,8 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFav } from "../store/slices/favSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function RecipeCard(props) {
+  const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const fav = useSelector((state) => state.fav.fav);
   const {
@@ -86,14 +88,20 @@ export default function RecipeCard(props) {
           >
             View Full Recipe <span aria-hidden="true">→</span>
           </a>
-          <button
-            className={`btn btn-outline-${mode === "light" ? "dark" : "light"}`}
-            onClick={handleFavoriteClick}
-            disabled={isFavorite(recipeUrl)}
-          >
-            {isFavorite(recipeUrl) ? "Added to Favorites" : "Add to Favorites"}{" "}
-            <FavoriteIcon />
-          </button>
+          {isAuthenticated && (
+            <button
+              className={`btn btn-outline-${
+                mode === "light" ? "dark" : "light"
+              }`}
+              onClick={handleFavoriteClick}
+              disabled={isFavorite(recipeUrl)}
+            >
+              {isFavorite(recipeUrl)
+                ? "Added to Favorites"
+                : "Add to Favorites"}{" "}
+              <FavoriteIcon />
+            </button>
+          )}
         </div>
       </div>
     </div>

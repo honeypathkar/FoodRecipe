@@ -2,19 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 //Using TypeIt for typing effect
 import TypeIt from "typeit-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home(props) {
+  const { isAuthenticated, user } = useAuth0();
   const { mode } = props;
   return (
     <div>
       <div className="relative isolate px-6  lg:px-8 mb-0">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div
-              className={`relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 hover:ring-gray-900/20`}
-            >
-              Presenting first recipe searching app{" "}
-            </div>
+            {isAuthenticated && (
+              <div
+                className={`relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 hover:ring-gray-900/20`}
+              >
+                Welcome {user.name}
+              </div>
+            )}
           </div>
           <div className="text-center">
             <h1
