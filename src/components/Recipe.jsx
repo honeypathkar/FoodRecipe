@@ -60,10 +60,10 @@ export default function Recipe(props) {
     <>
       {!isAuthenticated && (
         <div
-          class={`alert alert-${mode === "light" ? "light" : "dark"}`}
+          className={`alert alert-${mode === "light" ? "light" : "dark"}`}
           role="alert"
         >
-          You have to Login for adding Recipes to Favorite
+          You need to Login for adding Recipes to Favorite
         </div>
       )}
 
